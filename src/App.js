@@ -1,10 +1,15 @@
-import './assets/scss/app.scss'
-
-import logo from './assets/images/logo.svg'
-import FileReader from './components/FileReader'
 import {useState} from 'react'
 
+import './assets/scss/app.scss'
+import logo from './assets/images/logo.svg'
+
+import DataChart from './components/DataChart'
+import DataTable from './components/DataTable'
+import FileReader from './components/FileReader'
+import DataFiltering from './components/DataFiltering'
+
 function App() {
+  const [filters, setFilters] = useState(null)
   const [data, setData] = useState([
     {
       category__c: 'Tier 2',
@@ -32,6 +37,10 @@ function App() {
       <div className='app-container'>
         <FileReader setData={setData} />
       </div>
+
+      <DataFiltering data={data} selectedFilters={setFilters} />
+      <DataTable data={filters} />
+      <DataChart data={filters} />
     </div>
   )
 }
