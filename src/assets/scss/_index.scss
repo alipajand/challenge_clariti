@@ -35,6 +35,10 @@ header {
 }
 
 .app-container {
+  hr {
+    border-top: 1px solid darken($global-border-color, 10%);
+  }
+
   .text-blue {
     color: dodgerblue;
   }
@@ -51,12 +55,26 @@ header {
     text-align: center;
   }
 
-  .app-selects {
+  .text-left {
+    text-align: left;
+  }
+
+  .app-selects,
+  .app-button {
     height: 40px;
     margin: 5px 0;
-    min-width: 120px;
+    cursor: pointer;
     padding: 0 10px;
+    min-width: 120px;
     border-radius: $global-radius;
     border: 1px solid $global-border-color;
+  }
+
+  .app-button {
+    background-color: white;
+  }
+
+  .app-calculation {
+    padding: 10px 10px 20px;
   }
 }

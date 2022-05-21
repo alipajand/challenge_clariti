@@ -1,5 +1,5 @@
 function DataChart({data}) {
-  return <div className='app-charts'>CHART</div>
+  return <div>CHART</div>
 }
 
 export default DataChart

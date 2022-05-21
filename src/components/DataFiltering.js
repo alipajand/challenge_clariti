@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useState} from 'react'
+import { convertTexts } from "../mixins";
 
 function DataFiltering({data, filters, setFilters}) {
   const [states, setStates] = useState(null)
@@ -20,10 +21,6 @@ function DataFiltering({data, filters, setFilters}) {
 
   const updateStates = ({types = [], categories = [], departments = [], subCategories = []} = {}) => {
     setStates({type__c: types, category__c: categories, department__c: departments, sub_category__c: subCategories})
-  }
-
-  const convertTexts = (name) => {
-    return name.replace(/__c/g, '').replace('_', ' ')
   }
 
   const organizeDate = useCallback(() => {

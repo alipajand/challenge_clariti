@@ -1,3 +1,27 @@
-.app-tables {
-  margin: 10px 0 20px;
+.app-table {
+  table {
+    width: 100%;
+    border-spacing: 0;
+    margin: 20px 0 !important;
+    border-collapse: collapse;
+
+    td,
+    th {
+      padding: 8px;
+      border: 2px solid $global-border-color;
+    }
+  }
+
+  .app-table-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: center;
+
+    .app-button {
+      margin: 5px;
+      min-width: 60px;
+      background-color: #f1f1f1;
+    }
+  }
 }

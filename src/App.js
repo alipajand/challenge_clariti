@@ -4,8 +4,8 @@ import './assets/scss/app.scss'
 import logo from './assets/images/logo.svg'
 
 import FileReader from './components/FileReader'
-import DataCalculation from './components/DataCalculation'
 import DataFiltering from './components/DataFiltering'
+import DataCalculationWrapper from './components/DataCalculationWrapper'
 
 function App() {
   const [filters, setFilters] = useState(null)
@@ -40,7 +40,7 @@ function App() {
           <>
             <hr />
             <DataFiltering data={data} filters={filters} setFilters={setFilters} />
-            <DataCalculation data={data} filters={filters} />
+            <DataCalculationWrapper data={data} filters={filters} />
           </>
         )}
       </div>
