@@ -39,9 +39,21 @@ header {
     color: dodgerblue;
   }
 
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .text-capitalize {
+    text-transform: capitalize;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
   .app-selects {
     height: 40px;
-    margin: 5px;
+    margin: 5px 0;
     padding: 0 10px;
     border-radius: $global-radius;
     border: 1px solid $global-border-color;

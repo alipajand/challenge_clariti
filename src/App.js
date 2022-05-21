@@ -33,13 +33,17 @@ function App() {
         </div>
       </header>
 
-      {data?.length && (
-        <div className='app-container'>
-          <FileReader setData={setData} />
-          <DataFiltering data={data} filters={filters} setFilters={setFilters} />
-          <DataCalculation data={data} filters={filters} />
-        </div>
-      )}
+      <div className='app-container'>
+        <FileReader setData={setData} />
+
+        {data?.length && (
+          <>
+            <hr />
+            <DataFiltering data={data} filters={filters} setFilters={setFilters} />
+            <DataCalculation data={data} filters={filters} />
+          </>
+        )}
+      </div>
     </div>
   )
 }
