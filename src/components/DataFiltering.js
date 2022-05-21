@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from 'react'
-import { convertTexts } from "../mixins";
+import {convertTexts} from '../mixins'
 
 function DataFiltering({data, filters, setFilters}) {
   const [states, setStates] = useState(null)

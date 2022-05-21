@@ -2,8 +2,9 @@ import {useState} from 'react'
 import {convertTexts} from '../mixins'
 
 const perPage = 10
+const columns = ['name', 'category__c', 'department__c', 'sub_category__c', 'type__c', 'quantity__c', 'unit_price__c']
 
-function DataTableRecords({data, columns}) {
+function DataTableRecords({data}) {
   const [page, setPage] = useState(1)
 
   return (
@@ -11,7 +12,7 @@ function DataTableRecords({data, columns}) {
       <table>
         <thead>
           <tr>
-            <th>#</th>
+            <th className="text-center">#</th>
             {columns.map((column, index) => (
               <th className='text-capitalize text-left' key={index}>
                 {convertTexts(column)}
@@ -25,13 +26,9 @@ function DataTableRecords({data, columns}) {
               index + 1 < page * perPage &&
               index + 1 >= (page - 1) * perPage && (
                 <tr key={index}>
-                  <td>{index + 1}</td>
-
+                  <td className="text-center">{index + 1}</td>
                   {columns.map((column, i) => (
-                    <td
-                      key={`${index} ${i}`}
-                      className={column?.includes('price') ? 'white' : ''}
-                    >
+                    <td key={`${index} ${i}`} className={column?.includes('price') ? 'white' : ''}>
                       {item[column]}
                     </td>
                   ))}

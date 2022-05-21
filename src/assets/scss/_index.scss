@@ -59,8 +59,16 @@ header {
     text-align: left;
   }
 
+  .text-right {
+    text-align: right;
+  }
+
   .white {
     background-color: white !important;
+  }
+
+  .text-primary {
+    color: $primary;
   }
 
   .app-selects,
