@@ -10,7 +10,7 @@
     flex-grow: 1;
     align-items: center;
     flex-direction: column;
-    border: 1px solid white;
+    border: 1px solid #eee;
     margin: 1px;
 
     .app-chart-items {
@@ -30,13 +30,10 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        color: white;
         font-size: 10px;
         padding: 10px 5px;
-        font-weight: bold;
         text-align: center;
-        background-color: red;
-        border: 1px solid #000;
+        background-color: #eee;
         text-transform: capitalize;
         border-radius: $global-radius;
       }
