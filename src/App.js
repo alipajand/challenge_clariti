@@ -1,29 +1,8 @@
-import {useState} from 'react'
-
 import './assets/scss/app.scss'
 import logo from './assets/images/logo.svg'
-
-import FileReader from './components/FileReader'
-import DataFiltering from './components/DataFiltering'
-import DataCalculation from './components/DataCalculation'
+import DataManagement from './components/DataManagement'
 
 function App() {
-  const [filters, setFilters] = useState(null)
-  const [data, setData] = useState([
-    {
-      category__c: 'Tier 2',
-      department__c: 'Support',
-      description__c:
-        'nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu',
-      id: 'a00P0000006KXnPIAW',
-      name: 'Capers - Ox Eye Daisy',
-      quantity__c: 9,
-      sub_category__c: 'Cat1',
-      type__c: 'TypeB',
-      unit_price__c: 2.82,
-    },
-  ])
-
   return (
     <div>
       <header>
@@ -34,15 +13,7 @@ function App() {
       </header>
 
       <div className='app-container'>
-        <FileReader setData={setData} />
-
-        {data?.length && (
-          <>
-            <hr />
-            <DataFiltering data={data} filters={filters} setFilters={setFilters} />
-            <DataCalculation data={data} filters={filters} />
-          </>
-        )}
+        <DataManagement />
       </div>
     </div>
   )
