@@ -1,0 +1,13 @@
+.file-reader {
+  margin: 40px 0;
+  text-align: center;
+
+  .csv-input {
+    display: block;
+    margin: 15px auto;
+    padding: 15px 25px;
+    border-radius: $global-radius;
+    border: 1px solid $global-border-color;
+    background-color: #fff;
+  }
+}

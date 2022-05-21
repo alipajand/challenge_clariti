@@ -4,6 +4,7 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #eee;
 }
 
 .app-header,
@@ -33,6 +34,16 @@ header {
   }
 }
 
-.text-blue {
-  color: dodgerblue;
+.app-container {
+  .text-blue {
+    color: dodgerblue;
+  }
+
+  .app-selects {
+    height: 40px;
+    margin: 5px;
+    padding: 0 10px;
+    border-radius: $global-radius;
+    border: 1px solid $global-border-color;
+  }
 }

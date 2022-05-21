@@ -3,9 +3,8 @@ import {useState} from 'react'
 import './assets/scss/app.scss'
 import logo from './assets/images/logo.svg'
 
-import DataChart from './components/DataChart'
-import DataTable from './components/DataTable'
 import FileReader from './components/FileReader'
+import DataCalculation from './components/DataCalculation'
 import DataFiltering from './components/DataFiltering'
 
 function App() {
@@ -34,13 +33,13 @@ function App() {
         </div>
       </header>
 
-      <div className='app-container'>
-        <FileReader setData={setData} />
-      </div>
-
-      <DataFiltering data={data} selectedFilters={setFilters} />
-      <DataTable data={filters} />
-      <DataChart data={filters} />
+      {data?.length && (
+        <div className='app-container'>
+          <FileReader setData={setData} />
+          <DataFiltering data={data} filters={filters} setFilters={setFilters} />
+          <DataCalculation data={data} filters={filters} />
+        </div>
+      )}
     </div>
   )
 }
