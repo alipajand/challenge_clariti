@@ -23,7 +23,7 @@ function DataManagement() {
     <>
       <FileReader setData={setData} />
 
-      {data?.length !== 0 && (
+      {data && data?.length !== 0 && (
         <>
           <hr />
 

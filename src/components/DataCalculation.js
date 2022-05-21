@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 
-import DataChart from './DataChart'
+import DataChartCalculation from './DataChartCalculation'
 import DataTableTotal from './DataTableTotal'
 import DataTableRecords from './DataTableRecords'
 
@@ -9,7 +9,7 @@ function DataCalculation({data, filters}) {
 
   useEffect(() => {
     if (!filters && data?.length) return setFilteredData(data)
-    if (!filters && data?.length === 0) return setFilteredData([])
+    if (!data || (!filters && data?.length === 0)) return setFilteredData([])
 
     const filterValues = Object.entries(filters)
     const result = data.filter((item) => {
@@ -29,7 +29,7 @@ function DataCalculation({data, filters}) {
 
   return (
     <div className='app-calculation'>
-      <DataChart data={filteredData} />
+      <DataChartCalculation data={filteredData} />
 
       <DataTableTotal data={filteredData} />
       <DataTableRecords data={filteredData} />

@@ -47,9 +47,7 @@ function DataFiltering({data, filters, setFilters}) {
   }, [data, setStates])
 
   useEffect(() => {
-    if (data?.length === 0) return
-
-    organizeDate()
+    if (data?.length) organizeDate()
   }, [data, organizeDate])
 
   useEffect(() => {
