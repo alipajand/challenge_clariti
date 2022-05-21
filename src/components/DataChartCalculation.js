@@ -3,15 +3,26 @@ import DataChartView from './DataChartView'
 
 function DataChartCalculation({data}) {
   const [structuredData, setStructuredData] = useState(null)
-  const generateArray = useCallback((data, row = 0) => {
+
+  /**
+   *
+   * @type {function(*, *=): {children: []|*, row: number, id: *}[]}
+   */
+  const generateJsonArray = useCallback((data, row = 0) => {
     return Object.entries(data).map(([key, value]) => ({
       row,
       id: key,
-      children: Array.isArray(value) ? [] : generateArray(value, row + 1),
-      // children: Array.isArray(value) ? value : generateArray(value, row + 1),
+      children: Array.isArray(value) ? [] : generateJsonArray(value, row + 1),
+      // children: Array.isArray(value) ? value : generateJsonArray(value, row + 1), // to load the children
     }))
   }, [])
 
+  /**
+   *
+   * @param oldData
+   * @param type
+   * @returns {{}}
+   */
   const generateNewData = (oldData, type) => {
     const newData = {}
 
@@ -24,6 +35,10 @@ function DataChartCalculation({data}) {
     return newData
   }
 
+  /**
+   *
+   * @type {(function(*): void)|*}
+   */
   const generateTypes = useCallback(
     (rawData) => {
       if (!rawData) return
@@ -48,11 +63,15 @@ function DataChartCalculation({data}) {
         newDepartments[dep] = newCategories
       })
 
-      setStructuredData(generateArray(newDepartments))
+      setStructuredData(generateJsonArray(newDepartments))
     },
-    [generateArray]
+    [generateJsonArray]
   )
 
+  /**
+   *
+   * @type {(function(*): void)|*}
+   */
   const generateSubCategories = useCallback(
     (rawData) => {
       if (!rawData) return
@@ -76,6 +95,10 @@ function DataChartCalculation({data}) {
     [generateTypes]
   )
 
+  /**
+   *
+   * @type {(function(*): void)|*}
+   */
   const generateCategories = useCallback(
     (rawData) => {
       if (!rawData) return
@@ -91,6 +114,10 @@ function DataChartCalculation({data}) {
     [generateSubCategories]
   )
 
+  /**
+   *
+   * @type {(function(): (void|undefined))|*}
+   */
   const generateDepartments = useCallback(() => {
     if (!data?.length) return setStructuredData([])
 
@@ -106,6 +133,9 @@ function DataChartCalculation({data}) {
   }, [data, generateCategories])
 
   useEffect(() => {
+    /**
+     * start to organize data
+     */
     generateDepartments()
   }, [generateDepartments])
 

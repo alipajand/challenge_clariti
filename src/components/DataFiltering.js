@@ -5,6 +5,11 @@ import {convertTexts} from '../mixins'
 function DataFiltering({data, filters, setFilters}) {
   const [states, setStates] = useState(null)
 
+  /**
+   *
+   * @param event
+   * @param id
+   */
   const handleFilers = (event, id) => {
     if (!setFilters) return
 
@@ -20,10 +25,17 @@ function DataFiltering({data, filters, setFilters}) {
     setFilters(allFilters)
   }
 
+  /**
+   *
+   */
   const resetFilters = () => {
     setFilters(null)
   }
 
+  /**
+   *
+   * @type {(function(): void)|*}
+   */
   const organizeDate = useCallback(() => {
     const types = []
     const categories = []

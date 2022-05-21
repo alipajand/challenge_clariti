@@ -6,18 +6,7 @@ import FileReader from './FileReader'
 
 function DataManagement() {
   const [filters, setFilters] = useState(null)
-  const [data, setData] = useState([
-    {
-      category__c: 'Tier 2',
-      department__c: 'Support',
-      id: 'a00P0000006KXnPIAW',
-      name: 'Capers - Ox Eye Daisy',
-      quantity__c: 9,
-      sub_category__c: 'Cat1',
-      type__c: 'TypeB',
-      unit_price__c: 2.82,
-    },
-  ])
+  const [data, setData] = useState([])
 
   return (
     <>

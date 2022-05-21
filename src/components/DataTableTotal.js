@@ -3,6 +3,11 @@ import {useEffect, useState} from 'react'
 function DataTableTotal({data}) {
   const [total, setTotal] = useState(0)
 
+  /**
+   *
+   * @param item
+   * @returns {number}
+   */
   const calculateTotal = (item) => {
     let total = item.unit_price__c * item.quantity__c
     switch (item?.department__c?.toLowerCase()) {
@@ -21,6 +26,11 @@ function DataTableTotal({data}) {
     }
   }
 
+  /**
+   *
+   * @param value
+   * @returns {string|number}
+   */
   const filterNumbers = (value) => {
     if (!value || typeof Number(value) !== 'number') return 0
     if (Number(value) === value) {
