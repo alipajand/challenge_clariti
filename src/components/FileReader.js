@@ -3,9 +3,13 @@ import CSVReader from 'react-csv-reader'
 
 function FileReader({setData}) {
   const [fileInfo, setFileInfo] = useState(null)
-  const handleForce = (data, info) => {
+  const handleFile = (data, info) => {
     setFileInfo(info)
     if (setData) setData(data)
+  }
+  const resetFile = () => {
+    setFileInfo(null)
+    if (setData) setData(null)
   }
 
   const parserOptions = {
@@ -19,13 +23,16 @@ function FileReader({setData}) {
     <div className='file-reader'>
       {fileInfo ? (
         <div>
-          You selected the "<b>{fileInfo?.name}</b>", <span className='text-blue cursor-pointer'>change the file?</span>
+          You selected the "<b>{fileInfo?.name}</b>",{' '}
+          <span className='text-blue cursor-pointer' onClick={resetFile}>
+            change the file?
+          </span>
         </div>
       ) : (
         <CSVReader
           cssClass='react-csv-input'
           label='Select a CSV file to start...'
-          onFileLoaded={handleForce}
+          onFileLoaded={handleFile}
           parserOptions={parserOptions}
         />
       )}
