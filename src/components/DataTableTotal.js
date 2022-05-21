@@ -40,7 +40,7 @@ function DataTableTotal({data}) {
 
   useEffect(() => {
     if (data?.length) {
-      const sum = data.reduce((partialSum, item) => partialSum + calculateTotal(item), 0)
+      const sum = data.reduce((previousValue, item) => previousValue + calculateTotal(item), 0)
       setTotal(Number(sum).toFixed(2))
     } else {
       setTotal(0)
