@@ -25,8 +25,8 @@ function FileReader({setData}) {
         <div>
           You selected the "<b>{fileInfo?.name}</b>",{' '}
           <span className='text-blue cursor-pointer' onClick={resetFile}>
-            change the file?
-          </span>
+            change the file
+          </span>?
         </div>
       ) : (
         <CSVReader

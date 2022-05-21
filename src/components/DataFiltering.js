@@ -23,6 +23,10 @@ function DataFiltering({data, filters, setFilters}) {
     setStates({type__c: types, category__c: categories, department__c: departments, sub_category__c: subCategories})
   }
 
+  const resetFilters = () => {
+    setFilters(null)
+  }
+
   const organizeDate = useCallback(() => {
     const types = []
     const categories = []
@@ -60,29 +64,40 @@ function DataFiltering({data, filters, setFilters}) {
   }, [states])
 
   return (
-    <div className='app-filters'>
-      {states &&
-        Object.entries(states).map(([keyName, value], index) => (
-          <div key={index} className='select-container text-capitalize'>
-            <label htmlFor={keyName} className='select-header'>
-              {convertTexts(keyName)}
-            </label>
-            <select
-              name={`Select ${keyName}`}
-              id={keyName}
-              className='app-selects text-capitalize'
-              onChange={(event) => handleFilers(event, keyName)}
-            >
-              <option value={'all'}>All</option>
-              {value.map((item, index) => (
-                <option value={item} key={index}>
-                  {item}
-                </option>
-              ))}
-            </select>
+    states && (
+      <div className='app-filters'>
+        <div className='app-filter-items'>
+          {Object.entries(states).map(([keyName, value], index) => (
+            <div key={index} className='select-container text-capitalize'>
+              <label htmlFor={keyName} className='select-header'>
+                {convertTexts(keyName)}
+              </label>
+              <select
+                name={`Select ${keyName}`}
+                id={keyName}
+                className='app-selects text-capitalize'
+                onChange={(event) => handleFilers(event, keyName)}
+              >
+                <option value={'all'}>All</option>
+                {value.map((item, index) => (
+                  <option value={item} key={index}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ))}
+        </div>
+
+        {filters && (
+          <div className='text-center app-filter-reset'>
+            <span className='text-blue cursor-pointer' onClick={resetFilters}>
+              Reset filters?
+            </span>
           </div>
-        ))}
-    </div>
+        )}
+      </div>
+    )
   )
 }
 

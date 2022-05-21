@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react'
 
 import DataChart from './DataChart'
-import DataTableWrapper from './DataTableWrapper'
+import DataTableTotal from "./DataTableTotal";
+import DataTableRecords from "./DataTableRecords";
 
 function DataCalculation({data, filters}) {
   const [filteredData, setFilteredData] = useState([])
@@ -29,7 +30,9 @@ function DataCalculation({data, filters}) {
   return (
     <div className='app-calculation'>
       <DataChart data={filteredData} />
-      <DataTableWrapper data={filteredData} />
+
+      <DataTableTotal data={filteredData} />
+      <DataTableRecords data={filteredData} />
     </div>
   )
 }

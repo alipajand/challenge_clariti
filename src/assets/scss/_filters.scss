@@ -1,17 +1,24 @@
 .app-filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
   margin: 30px 0 20px;
 
-  .select-container {
+  .app-filter-items {
     display: flex;
-    padding: 5px;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 
-    .select-header {
-      font-size: 13px;
+    .select-container {
+      display: flex;
+      padding: 5px;
+      flex-direction: column;
+
+      .select-header {
+        font-size: 13px;
+      }
     }
+  }
+
+  .app-filter-reset {
+    font-size: 12px;
   }
 }
