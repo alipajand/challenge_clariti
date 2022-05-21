@@ -20,7 +20,7 @@ function DataChart({data}) {
     //   setFilteredData(result)
   }, [data])
 
-  return <div>CHART</div>
+  return <div></div>
 }
 
 export default DataChart
