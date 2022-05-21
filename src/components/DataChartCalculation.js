@@ -42,18 +42,27 @@ function DataChartCalculation({data}) {
   const generateTypes = useCallback(
     (rawData) => {
       if (!rawData) return
-
       const newDepartments = {}
-      const departmentNames = Object.keys(rawData)
-      departmentNames.forEach((dep) => {
+
+      /**
+       * iterate on departments
+       * @type {null}
+       */
+      Object.keys(rawData).forEach((dep) => {
         const newCategories = {}
-        const categoryNames = Object.keys(rawData[dep])
 
-        categoryNames.forEach((cat) => {
+        /**
+         * iterate on categories
+         * @type {null}
+         */
+        Object.keys(rawData[dep]).forEach((cat) => {
           const newSubCategories = {}
-          const subCategoryNames = Object.keys(rawData[dep][cat])
 
-          subCategoryNames.forEach((subCat) => {
+          /**
+           * iterate on sub categories to generate types
+           * @type {null}
+           */
+          Object.keys(rawData[dep][cat]).forEach((subCat) => {
             newSubCategories[subCat] = generateNewData(rawData[dep][cat][subCat], 'type__c')
           })
 
@@ -75,14 +84,20 @@ function DataChartCalculation({data}) {
   const generateSubCategories = useCallback(
     (rawData) => {
       if (!rawData) return
-
       const newDepartments = {}
-      const departmentNames = Object.keys(rawData)
 
-      departmentNames.forEach((dep) => {
+      /**
+       * iterate on departments
+       * @type {null}
+       */
+      Object.keys(rawData).forEach((dep) => {
         const newCategories = {}
         const categoryNames = Object.keys(rawData[dep])
 
+        /**
+         * iterate on categories to generate sub categories
+         * @type {null}
+         */
         categoryNames.forEach((cat) => {
           newCategories[cat] = generateNewData(rawData[dep][cat], 'sub_category__c')
         })
@@ -102,10 +117,13 @@ function DataChartCalculation({data}) {
   const generateCategories = useCallback(
     (rawData) => {
       if (!rawData) return
-
       const newDepartments = {}
-      const departments = Object.keys(rawData)
-      departments.forEach((dep) => {
+
+      /**
+       * create department
+       * @type {null}
+       */
+      Object.keys(rawData).forEach((dep) => {
         newDepartments[dep] = generateNewData(rawData[dep], 'category__c')
       })
 
@@ -121,6 +139,10 @@ function DataChartCalculation({data}) {
   const generateDepartments = useCallback(() => {
     if (!data?.length) return setStructuredData([])
 
+    /**
+     * create department names
+     * @type {null}
+     */
     let convertedData = null
     data.forEach((item) => {
       const department__c = item.department__c?.toLowerCase()
@@ -129,6 +151,9 @@ function DataChartCalculation({data}) {
       convertedData[department__c].push(item)
     })
 
+    /**
+     * generate category object
+     */
     generateCategories(convertedData)
   }, [data, generateCategories])
 
