@@ -4,7 +4,7 @@ function DataFiltering({data, filters, setFilters}) {
   const [states, setStates] = useState(null)
 
   const handleFilers = (event, id) => {
-    if (setFilters) return
+    if (!setFilters) return
 
     const value = event?.target?.value
     const allFilters = {...(filters || {})}
@@ -19,7 +19,11 @@ function DataFiltering({data, filters, setFilters}) {
   }
 
   const updateStates = ({types = [], categories = [], departments = [], subCategories = []} = {}) => {
-    setStates({types, categories, departments, subCategories})
+    setStates({type__c: types, category__c: categories, department__c: departments, sub_category__c: subCategories})
+  }
+
+  const convertTexts = (name) => {
+    return name.replace(/__c/g, '').replace('_', ' ')
   }
 
   const organizeDate = useCallback(() => {
@@ -64,7 +68,7 @@ function DataFiltering({data, filters, setFilters}) {
         Object.entries(states).map(([keyName, value], index) => (
           <div key={index} className='select-container text-capitalize'>
             <label htmlFor={keyName} className='select-header'>
-              Select {keyName}
+              {convertTexts(keyName)}
             </label>
             <select
               name={`Select ${keyName}`}
@@ -72,8 +76,7 @@ function DataFiltering({data, filters, setFilters}) {
               className='app-selects text-capitalize'
               onChange={(event) => handleFilers(event, keyName)}
             >
-              <option value={'all'}>All {keyName}</option>
-
+              <option value={'all'}>All</option>
               {value.map((item, index) => (
                 <option value={item} key={index}>
                   {item}

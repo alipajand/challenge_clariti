@@ -6,10 +6,24 @@ function DataCalculation({data, filters}) {
   const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
-    console.log({data, filters})
-    const result = data.filter((item) => item)
+    if (!filters && data?.length) return setFilteredData(data)
+    if (!filters && data?.length === 0) return setFilteredData([])
+
+    const filterValues = Object.entries(filters)
+    const result = data.filter((item) => {
+      let showData = true
+
+      filterValues.forEach(([filterKey, filterValue]) => {
+        if (!item[filterKey]?.toLowerCase()?.includes(filterValue?.toLowerCase())) showData = false
+      })
+      return showData
+    })
+
     setFilteredData(result)
   }, [filters, data])
+
+  if (filteredData?.length === 0)
+    return <div className='text-center'>No Data Available {filters && 'With Selected Filters'}!</div>
 
   return (
     <>

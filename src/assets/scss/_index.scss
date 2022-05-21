@@ -54,6 +54,7 @@ header {
   .app-selects {
     height: 40px;
     margin: 5px 0;
+    min-width: 120px;
     padding: 0 10px;
     border-radius: $global-radius;
     border: 1px solid $global-border-color;
