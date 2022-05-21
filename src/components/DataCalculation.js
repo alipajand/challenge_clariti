@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
 
-import DataChartCalculation from './DataChartCalculation'
 import DataTableTotal from './DataTableTotal'
 import DataTableRecords from './DataTableRecords'
+import DataChartCalculation from './DataChartCalculation'
 
 function DataCalculation({data, filters}) {
   const [filteredData, setFilteredData] = useState([])

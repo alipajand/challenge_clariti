@@ -3,12 +3,20 @@ import DataChartView from './DataChartView'
 
 function DataChartCalculation({data}) {
   const [structuredData, setStructuredData] = useState(null)
+  const generateArray = useCallback((data, row = 0) => {
+    return Object.entries(data).map(([key, value]) => ({
+      row,
+      id: key,
+      children: Array.isArray(value) ? [] : generateArray(value, row + 1),
+      // children: Array.isArray(value) ? value : generateArray(value, row + 1),
+    }))
+  }, [])
 
   const generateNewData = (oldData, type) => {
     const newData = {}
 
     oldData.forEach((sub) => {
-      const keyName = sub[type]?.toLowerCase()?.replace(/ /g, '_')
+      const keyName = sub[type]?.toLowerCase()?.replace(/ /g, '_') || 'undefined'
       if (!newData[keyName]) newData[keyName] = []
       newData[keyName].push(sub)
     })
@@ -16,31 +24,34 @@ function DataChartCalculation({data}) {
     return newData
   }
 
-  const generateTypes = useCallback((rawData) => {
-    if (!rawData) return
+  const generateTypes = useCallback(
+    (rawData) => {
+      if (!rawData) return
 
-    const newDepartments = {}
-    const departmentNames = Object.keys(rawData)
-    departmentNames.forEach((dep) => {
-      const newCategories = {}
-      const categoryNames = Object.keys(rawData[dep])
+      const newDepartments = {}
+      const departmentNames = Object.keys(rawData)
+      departmentNames.forEach((dep) => {
+        const newCategories = {}
+        const categoryNames = Object.keys(rawData[dep])
 
-      categoryNames.forEach((cat) => {
-        const newSubCategories = {}
-        const subCategoryNames = Object.keys(rawData[dep][cat])
+        categoryNames.forEach((cat) => {
+          const newSubCategories = {}
+          const subCategoryNames = Object.keys(rawData[dep][cat])
 
-        subCategoryNames.forEach((subCat) => {
-          newSubCategories[subCat] = generateNewData(rawData[dep][cat][subCat], 'type__c')
+          subCategoryNames.forEach((subCat) => {
+            newSubCategories[subCat] = generateNewData(rawData[dep][cat][subCat], 'type__c')
+          })
+
+          newCategories[cat] = newSubCategories
         })
 
-        newCategories[cat] = newSubCategories
+        newDepartments[dep] = newCategories
       })
 
-      newDepartments[dep] = newCategories
-    })
-
-    setStructuredData(newDepartments)
-  }, [])
+      setStructuredData(generateArray(newDepartments))
+    },
+    [generateArray]
+  )
 
   const generateSubCategories = useCallback(
     (rawData) => {

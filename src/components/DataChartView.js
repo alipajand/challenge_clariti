@@ -1,11 +1,14 @@
-import {useEffect} from 'react'
+import DataChartViewColumn from './DataChartViewColumn'
 
-function DataChartCalculation({data}) {
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
-  return <div></div>
+function DataChartView({data}) {
+  console.log(data)
+  return (
+    <div className='app-chart'>
+      {data.map((item, index) => (
+        <DataChartViewColumn data={item} key={index} />
+      ))}
+    </div>
+  )
 }
 
-export default DataChartCalculation
+export default DataChartView
