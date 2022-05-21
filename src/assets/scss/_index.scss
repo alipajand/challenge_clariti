@@ -4,10 +4,35 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #282c34;
 }
 
-.app-header {
-  .app-logo {
+.app-header,
+.app-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+header {
+  background-color: #282c34;
+
+  .app-header {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    .app-logo {
+      height: 70px;
+      margin-right: 20px;
+    }
+
+    .app-logo-text {
+      font-size: 30px;
+      font-weight: bold;
+    }
   }
+}
+
+.text-blue {
+  color: dodgerblue;
 }
