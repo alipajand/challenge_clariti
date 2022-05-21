@@ -1,11 +1,11 @@
 import {useState} from 'react'
 
-import {AppContext} from '../AppContext'
 import DataFiltering from './DataFiltering'
 import DataCalculation from './DataCalculation'
 import FileReader from './FileReader'
 
 function DataManagement() {
+  const [filters, setFilters] = useState(null)
   const [data, setData] = useState([
     {
       category__c: 'Tier 2',
@@ -19,9 +19,6 @@ function DataManagement() {
     },
   ])
 
-  const [states, setStates] = useState(null)
-  const [filters, setFilters] = useState(null)
-
   return (
     <>
       <FileReader setData={setData} />
@@ -30,10 +27,8 @@ function DataManagement() {
         <>
           <hr />
 
-          <AppContext.Provider value={{states, setStates}}>
-            <DataFiltering data={data} filters={filters} setFilters={setFilters} />
-            <DataCalculation data={data} filters={filters} />
-          </AppContext.Provider>
+          <DataFiltering data={data} filters={filters} setFilters={setFilters} />
+          <DataCalculation data={data} filters={filters} />
         </>
       )}
     </>

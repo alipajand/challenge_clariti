@@ -1,14 +1,24 @@
-import {useContext, useEffect} from 'react'
-import {AppContext} from '../AppContext'
+import {useEffect} from 'react'
 
 function DataChart({data}) {
-  const {states} = useContext(AppContext) || {}
   // const [structuredData, setStructuredData] = useState([])
 
   useEffect(() => {
-    if (data?.length === 0) return
-    console.log(states)
-  }, [data, states])
+    //   if (!filters && data?.length) return setFilteredData(data)
+    //   if (!filters && data?.length === 0) return setFilteredData([])
+    //
+    //   const filterValues = Object.entries(filters)
+    //   const result = data.filter((item) => {
+    //     let showData = true
+    //
+    //     filterValues.forEach(([filterKey, filterValue]) => {
+    //       if (!item[filterKey]?.toLowerCase()?.includes(filterValue?.toLowerCase())) showData = false
+    //     })
+    //     return showData
+    //   })
+    //
+    //   setFilteredData(result)
+  }, [data])
 
   return <div>CHART</div>
 }

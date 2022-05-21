@@ -12,7 +12,7 @@ function DataTableRecords({data}) {
       <table>
         <thead>
           <tr>
-            <th className="text-center">#</th>
+            <th className='text-center'>#</th>
             {columns.map((column, index) => (
               <th className='text-capitalize text-left' key={index}>
                 {convertTexts(column)}
@@ -26,7 +26,7 @@ function DataTableRecords({data}) {
               index + 1 < page * perPage &&
               index + 1 >= (page - 1) * perPage && (
                 <tr key={index}>
-                  <td className="text-center">{index + 1}</td>
+                  <td className='text-center'>{index + 1}</td>
                   {columns.map((column, i) => (
                     <td key={`${index} ${i}`} className={column?.includes('price') ? 'white' : ''}>
                       {item[column]}

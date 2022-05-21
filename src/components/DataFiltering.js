@@ -1,10 +1,9 @@
-import {useCallback, useContext, useEffect} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 
 import {convertTexts} from '../mixins'
-import {AppContext} from '../AppContext'
 
 function DataFiltering({data, filters, setFilters}) {
-  const {states = null, setStates} = useContext(AppContext) || {}
+  const [states, setStates] = useState(null)
 
   const handleFilers = (event, id) => {
     if (!setFilters) return
@@ -19,11 +18,6 @@ function DataFiltering({data, filters, setFilters}) {
     }
 
     setFilters(allFilters)
-  }
-
-  const updateStates = ({types = [], categories = [], departments = [], subCategories = []} = {}) => {
-    if (setStates)
-      setStates({type__c: types, category__c: categories, department__c: departments, sub_category__c: subCategories})
   }
 
   const resetFilters = () => {
@@ -48,13 +42,9 @@ function DataFiltering({data, filters, setFilters}) {
       if (!subCategories.includes(sub_category__c)) subCategories.push(sub_category__c)
     })
 
-    updateStates({
-      types,
-      categories,
-      departments,
-      subCategories,
-    })
-  }, [data])
+    if (setStates)
+      setStates({type__c: types, category__c: categories, department__c: departments, sub_category__c: subCategories})
+  }, [data, setStates])
 
   useEffect(() => {
     if (data?.length === 0) return
