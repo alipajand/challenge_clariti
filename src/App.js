@@ -5,7 +5,7 @@ import logo from './assets/images/logo.svg'
 
 import FileReader from './components/FileReader'
 import DataFiltering from './components/DataFiltering'
-import DataCalculationWrapper from './components/DataCalculationWrapper'
+import DataCalculation from './components/DataCalculation'
 
 function App() {
   const [filters, setFilters] = useState(null)
@@ -40,7 +40,7 @@ function App() {
           <>
             <hr />
             <DataFiltering data={data} filters={filters} setFilters={setFilters} />
-            <DataCalculationWrapper data={data} filters={filters} />
+            <DataCalculation data={data} filters={filters} />
           </>
         )}
       </div>

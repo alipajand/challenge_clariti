@@ -1,10 +1,9 @@
 import {useState} from 'react'
-import { convertTexts } from "../mixins";
+import {convertTexts} from '../mixins'
 
-const columns = ['name', 'category__c', 'department__c', 'quantity__c', 'sub_category__c', 'type__c', 'unit_price__c']
 const perPage = 10
 
-function DataTable({data}) {
+function DataTableRecords({data, columns}) {
   const [page, setPage] = useState(1)
 
   return (
@@ -29,7 +28,12 @@ function DataTable({data}) {
                   <td>{index + 1}</td>
 
                   {columns.map((column, i) => (
-                    <td key={`${index} ${i}`}>{item[column]}</td>
+                    <td
+                      key={`${index} ${i}`}
+                      className={column?.includes('price') ? 'white' : ''}
+                    >
+                      {item[column]}
+                    </td>
                   ))}
                 </tr>
               )
@@ -59,4 +63,4 @@ function DataTable({data}) {
   )
 }
 
-export default DataTable
+export default DataTableRecords

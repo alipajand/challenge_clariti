@@ -1,5 +1,8 @@
 import {useState} from 'react'
-import DataTable from './DataTable'
+import DataTableRecords from './DataTableRecords'
+import DataTableTotal from './DataTableTotal'
+
+const columns = ['name', 'category__c', 'department__c', 'sub_category__c', 'type__c', 'quantity__c', 'unit_price__c']
 
 function DataTableWrapper({data}) {
   const [showRecords, toggleRecords] = useState(false)
@@ -10,7 +13,9 @@ function DataTableWrapper({data}) {
         Show Records
       </button>
 
-      {showRecords && <DataTable data={data} />}
+      {showRecords && <DataTableRecords data={data} columns={columns} />}
+
+      <DataTableTotal data={data} columns={columns} />
     </div>
   )
 }

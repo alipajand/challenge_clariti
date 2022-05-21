@@ -1,6 +1,7 @@
 .app-table {
   table {
     width: 100%;
+    font-size: 13px;
     border-spacing: 0;
     margin: 20px 0 !important;
     border-collapse: collapse;
@@ -20,8 +21,17 @@
 
     .app-button {
       margin: 5px;
-      min-width: 60px;
-      background-color: #f1f1f1;
+      min-width: 65px;
+      background-color: #f5f5f5;
+    }
+  }
+
+  &.mini {
+    display: flex;
+    justify-content: end;
+
+    table {
+      width: 300px;
     }
   }
 }
