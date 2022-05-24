@@ -1,8 +1,8 @@
 import {useState} from 'react'
 
+import FileReader from './FileReader'
 import DataFiltering from './DataFiltering'
 import DataCalculation from './DataCalculation'
-import FileReader from './FileReader'
 
 function DataManagement() {
   const [filters, setFilters] = useState(null)

@@ -36,7 +36,7 @@ function DataFiltering({data, filters, setFilters}) {
    *
    * @type {(function(): void)|*}
    */
-  const organizeDate = useCallback(() => {
+  const organizeData = useCallback(() => {
     const types = []
     const categories = []
     const departments = []
@@ -59,12 +59,8 @@ function DataFiltering({data, filters, setFilters}) {
   }, [data, setStates])
 
   useEffect(() => {
-    if (data?.length) organizeDate()
-  }, [data, organizeDate])
-
-  useEffect(() => {
-    if (states) Object.entries(states)
-  }, [states])
+    if (data?.length) organizeData()
+  }, [data, organizeData])
 
   return (
     states && (
